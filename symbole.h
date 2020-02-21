@@ -13,7 +13,7 @@ class Symbole {
       Symbole(int i, bool b) : ident(i), terminal(b) {  }
       virtual ~Symbole() { }
       operator int() const { return ident; }
-      virtual void Affiche();
+      virtual void affiche();
       bool isTerminal() { return terminal; }
       virtual int getValue ();
 
@@ -26,7 +26,7 @@ class Entier : public Symbole {
    public:
       Entier(int v) : Symbole(INT, true), valeur(v) { }
       ~Entier() { }
-      virtual void Affiche();
+      virtual void affiche();
       int getValue ();
    protected:
       int valeur;
@@ -34,10 +34,13 @@ class Entier : public Symbole {
 
 class Expression : public Symbole {
     public:
-    Expression () : Symbole(EXP,false) {}
+    Expression (int v) : Symbole(EXP,false), valeur(v) {}
     virtual~Expression() {}
-    virtual double eval(const map <string,double> & valeurs) = 0;
+	virtual void affiche();
     int getValue ();
+
+protected :
+	int valeur;
 };
 
 class OpenPar : public Symbole {
