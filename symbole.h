@@ -10,15 +10,15 @@ const string Etiquettes[] = { "OPENPAR", "CLOSEPAR", "PLUS", "MULT", "INT", "FIN
 
 class Symbole {
    public:
-      Symbole(int i, bool b) : ident(i), terminal(b) {  }
+      Symbole(int i, bool b) : identificateur(i), terminal(b) {  }
       virtual ~Symbole() { }
-      operator int() const { return ident; }
+      operator int() const { return identificateur; }
       virtual void affiche();
       bool isTerminal() { return terminal; }
-      virtual int getValue ();
+      virtual int getValeur();
 
    protected:
-      int ident;
+      int identificateur;
       bool terminal;
 };
 
@@ -27,7 +27,7 @@ class Entier : public Symbole {
       Entier(int v) : Symbole(INT, true), valeur(v) { }
       ~Entier() { }
       virtual void affiche();
-      int getValue ();
+      int getValeur();
    protected:
       int valeur;
 };
@@ -37,7 +37,7 @@ class Expression : public Symbole {
     Expression (int v) : Symbole(EXP,false), valeur(v) {}
     virtual~Expression() {}
 	virtual void affiche();
-    int getValue ();
+    int getValeur();
 
 protected :
 	int valeur;

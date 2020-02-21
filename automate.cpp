@@ -21,6 +21,7 @@ void Automate :: decalage(Symbole *s, Etat*e){
 void Automate :: reduction(int n, Symbole *s) {
     stack<Symbole *> aReduire;
 
+	// Création de la pile avec les symboles à reduire
     for (int i = 0; i < n; i++) {
       delete (statestack.top());
       statestack.pop();
@@ -28,32 +29,37 @@ void Automate :: reduction(int n, Symbole *s) {
       symbolstack.pop();
     }
 
-    int val;
+    int valeurExpression;
 
     if (n == 1) {
-      val = aReduire.top()->getValue();
+		// L'expression se résume à un entier
+      valeurExpression = aReduire.top()->getValeur();
     } else if (n == 3) {
+		// L'expression est de type E+E, E*E, (E) 
       if (*aReduire.top() == OPENPAR) {
         aReduire.pop();
-        val = aReduire.top()->getValue();
+        valeurExpression = aReduire.top()->getValeur();
       } else {
-        val = aReduire.top()->getValue();
+		// Récupération de la valeur de la première expression
+        valeurExpression = aReduire.top()->getValeur();
         aReduire.pop();
         if (*aReduire.top() == MULT) {
+			// Application de la mutliplication
           aReduire.pop();
-          val = val * aReduire.top()->getValue();
+          valeurExpression *= aReduire.top()->getValeur();
         } else {
+			// Application de l'addition
           aReduire.pop();
-          val = val + aReduire.top()->getValue();
+		  valeurExpression += aReduire.top()->getValeur();
         }
       }
     }
-
-    statestack.top()->transition(*this, new Expression(val));
+	// Transition avec la nouvelle Expression
+    statestack.top()->transition(*this, new Expression(valeurExpression));
     lexer->garderSymbole(s);
 }
 
-void Automate :: run(){
+void Automate :: calcul(){
     bool prochainEtat = true;
 
     while (prochainEtat) {
@@ -62,8 +68,8 @@ void Automate :: run(){
       prochainEtat = statestack.top()->transition(*this, s);
     }
     if (*symbolstack.top() != ERREUR) {
-      int resultat = symbolstack.top()->getValue();
-      cout << "Syntaxe correcte" << endl << "Résultat : " << resultat << endl;
+      int resultat = symbolstack.top()->getValeur();
+      cout << "Syntaxe correcte" << endl << "Resultat : " << resultat << endl;
     } else {
       cout << "Syntaxe non reconnue" << endl;
     }

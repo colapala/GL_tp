@@ -15,7 +15,7 @@ public:
   Automate(string flux);
   void decalage(Symbole *s, Etat *e);
   void reduction(int n, Symbole *s);
-  void run();
+  void calcul();
 
 protected:
   stack <Symbole *> symbolstack;

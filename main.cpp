@@ -22,7 +22,7 @@ int main(void) {
    cout << endl; 
 
    Automate *a = new Automate(chaine);
-   a->run();
+   a->calcul();
 
    return 0;
 }

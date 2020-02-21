@@ -2,7 +2,7 @@
 #include <iostream>
 
 void Symbole::affiche() {
-   cout<<Etiquettes[ident];
+   cout<<Etiquettes[identificateur];
 }
 
 void Entier::affiche() {
@@ -15,14 +15,14 @@ void Expression::affiche() {
 	cout << "(" << valeur << ")";
 }
 
-int Symbole::getValue(){
+int Symbole::getValeur(){
     return -1;
 }
 
-int Entier::getValue(){
+int Entier::getValeur(){
     return valeur;
 }
 
-int Expression::getValue(){
+int Expression::getValeur(){
     return valeur;
 }
