@@ -49,8 +49,8 @@ void Automate :: reduction(int n, Symbole *s) {
       }
     }
 
-    statestack.top()->transition(*this, new Expression(val));
-    lexer->putSymbol(s);
+    /*statestack.top()->transition(*this, new Expression(val));
+    lexer->putSymbol(s);*/
 }
 
 void Automate :: run(){

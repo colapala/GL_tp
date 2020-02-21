@@ -1,5 +1,6 @@
 #include <iostream>
 #include "lexer.h"
+#include "automate.h"
 
 
 int main(void) {
@@ -13,6 +14,10 @@ int main(void) {
       cout<<endl;
       l.Avancer();
    }
+
+   Automate *a = new Automate(chaine);
+   a->run();
+
    return 0;
 }
 
