@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <iostream>
 
-Etat :: Etat () {}
 Etat :: Etat(string s) {
     nom=s;
 }
@@ -13,7 +12,6 @@ Etat :: ~Etat () {}
 void Etat :: afficher() const {
     cout<< nom <<endl;
 }
-
 
 bool Etat0 :: transition(Automate &automate, Symbole *s) {
     switch (*s) {
@@ -100,6 +98,9 @@ bool Etat7 :: transition(Automate &automate, Symbole *s) {
         case FIN :
             automate.reduction(3, new Fin);
             break;
+		case CLOSEPAR:
+			automate.reduction(3, new ClosePar);
+			break;
         default :
             automate.decalage(new Symbole(ERREUR, true), NULL);
             return false;
@@ -118,6 +119,9 @@ bool Etat8 :: transition(Automate &automate, Symbole *s) {
         case FIN :
             automate.reduction(3, new Fin);
         break;
+		case CLOSEPAR:
+			automate.reduction(3, new ClosePar);
+			break;
         default :
             automate.decalage(new Symbole(ERREUR, true), NULL);
             return false;

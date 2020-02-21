@@ -46,6 +46,18 @@ Symbole * Lexer::Consulter() {
    return tampon;
 }
 
+void Lexer::putSymbol(Symbole *s) {
+
+	switch (*s) {
+	case PLUS:
+	case MULT:
+	case OPENPAR:
+	case CLOSEPAR:
+		tampon = s;
+		break;
+	}
+}
+
 void Lexer::Avancer() {
    tampon = nullptr;
 }

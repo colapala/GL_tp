@@ -19,5 +19,5 @@ int Entier::getValue(){
 }
 
 int Expression::getValue(){
-    return 1;
+    return valeur;
 }

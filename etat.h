@@ -15,7 +15,7 @@ class Etat9;
 class Etat {
 
 public:
-  Etat();
+  Etat() {};
   Etat(string s);
   virtual ~Etat();
   void afficher() const;
@@ -27,7 +27,7 @@ protected:
 
 class Etat0 : public Etat {
 public:
- Etat0() {};
+  Etat0() {};
   bool transition(Automate &automate, Symbole *s);
 };
 

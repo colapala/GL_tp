@@ -13,9 +13,9 @@ Automate::Automate(string flux){
 void Automate :: decalage(Symbole *s, Etat*e){
     symbolstack.push(s);
     statestack.push(e);
-    if(s->isTerminal()) {
+   /* if(s->isTerminal()) {
         lexer->Avancer();
-    }
+    }*/
 }
 
 void Automate :: reduction(int n, Symbole *s) {
@@ -49,8 +49,8 @@ void Automate :: reduction(int n, Symbole *s) {
       }
     }
 
-    /*statestack.top()->transition(*this, new Expression(val));
-    lexer->putSymbol(s);*/
+    statestack.top()->transition(*this, new Expression(val));
+    lexer->putSymbol(s);
 }
 
 void Automate :: run(){

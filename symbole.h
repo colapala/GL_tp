@@ -34,10 +34,13 @@ class Entier : public Symbole {
 
 class Expression : public Symbole {
     public:
-    Expression () : Symbole(EXP,false) {}
+    Expression (int v) : Symbole(EXP,false), valeur(v) {}
     virtual~Expression() {}
-    virtual double eval(const map <string,double> & valeurs) = 0;
+    //virtual double eval(const map <string,double> & valeurs) = 0;
     int getValue ();
+
+protected :
+	int valeur;
 };
 
 class OpenPar : public Symbole {
