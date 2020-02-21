@@ -1,13 +1,18 @@
 #include "symbole.h"
 #include <iostream>
 
-void Symbole::Affiche() {
+void Symbole::affiche() {
    cout<<Etiquettes[ident];
 }
 
-void Entier::Affiche() {
-   Symbole::Affiche();
+void Entier::affiche() {
+   Symbole::affiche();
    cout<<"("<<valeur<<")";
+}
+
+void Expression::affiche() {
+	Symbole::affiche();
+	cout << "(" << valeur << ")";
 }
 
 int Symbole::getValue(){

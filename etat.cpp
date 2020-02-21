@@ -5,11 +5,10 @@
 #include <iostream>
 
 Etat :: Etat(string s) {
-    nom=s;
+    nom = s;
 }
-Etat :: ~Etat () {}
 
-void Etat :: afficher() const {
+void Etat :: affiche() const {
     cout<< nom <<endl;
 }
 

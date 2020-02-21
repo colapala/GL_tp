@@ -46,8 +46,7 @@ Symbole * Lexer::Consulter() {
    return tampon;
 }
 
-void Lexer::putSymbol(Symbole *s) {
-
+void Lexer::garderSymbole(Symbole *s) {
 	switch (*s) {
 	case PLUS:
 	case MULT:

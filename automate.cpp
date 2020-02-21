@@ -13,44 +13,44 @@ Automate::Automate(string flux){
 void Automate :: decalage(Symbole *s, Etat*e){
     symbolstack.push(s);
     statestack.push(e);
-   /* if(s->isTerminal()) {
+   if(s->isTerminal()) {
         lexer->Avancer();
-    }*/
+    }
 }
 
 void Automate :: reduction(int n, Symbole *s) {
-    stack<Symbole *> aEnlever;
+    stack<Symbole *> aReduire;
 
     for (int i = 0; i < n; i++) {
       delete (statestack.top());
       statestack.pop();
-      aEnlever.push(symbolstack.top());
+      aReduire.push(symbolstack.top());
       symbolstack.pop();
     }
 
     int val;
 
     if (n == 1) {
-      val = aEnlever.top()->getValue();
+      val = aReduire.top()->getValue();
     } else if (n == 3) {
-      if (*aEnlever.top() == OPENPAR) {
-        aEnlever.pop();
-        val = aEnlever.top()->getValue();
+      if (*aReduire.top() == OPENPAR) {
+        aReduire.pop();
+        val = aReduire.top()->getValue();
       } else {
-        val = aEnlever.top()->getValue();
-        aEnlever.pop();
-        if (*aEnlever.top() == MULT) {
-          aEnlever.pop();
-          val = val * aEnlever.top()->getValue();
+        val = aReduire.top()->getValue();
+        aReduire.pop();
+        if (*aReduire.top() == MULT) {
+          aReduire.pop();
+          val = val * aReduire.top()->getValue();
         } else {
-          aEnlever.pop();
-          val = val + aEnlever.top()->getValue();
+          aReduire.pop();
+          val = val + aReduire.top()->getValue();
         }
       }
     }
 
     statestack.top()->transition(*this, new Expression(val));
-    lexer->putSymbol(s);
+    lexer->garderSymbole(s);
 }
 
 void Automate :: run(){
@@ -65,6 +65,6 @@ void Automate :: run(){
       int resultat = symbolstack.top()->getValue();
       cout << "Syntaxe correcte" << endl << "Résultat : " << resultat << endl;
     } else {
-      cout << "Syntaxe non reconnu : caractere invalide" << endl;
+      cout << "Syntaxe non reconnue" << endl;
     }
 }
