@@ -117,7 +117,7 @@ bool Etat8 :: transition(Automate &automate, Symbole *s) {
             break;
         case FIN :
             automate.reduction(3, new Fin);
-        break;
+            break;
 		case CLOSEPAR:
 			automate.reduction(3, new ClosePar);
 			break;

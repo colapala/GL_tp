@@ -48,12 +48,12 @@ Symbole * Lexer::Consulter() {
 
 void Lexer::garderSymbole(Symbole *s) {
 	switch (*s) {
-	case PLUS:
-	case MULT:
-	case OPENPAR:
-	case CLOSEPAR:
-		tampon = s;
-		break;
+        case PLUS:
+        case MULT:
+        case OPENPAR:
+        case CLOSEPAR:
+            tampon = s;
+            break;
 	}
 }
 
